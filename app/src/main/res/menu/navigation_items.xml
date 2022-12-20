@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/optHome"
+        android:title="Home"
+        android:icon="@drawable/ic_home"/>
+    <item
+        android:id="@+id/optApply"
+        android:title="Apply Bus Pass"
+        android:icon="@drawable/ic_baseline_directions_bus_24"/>
+    <item
+        android:id="@+id/optRequest"
+        android:title="Buspass Request Status"
+        android:icon="@drawable/clipboard_image_1"/>
+    <item
+        android:id="@+id/optBack"
+        android:title="Back To Home Page"
+        android:icon="@drawable/ic_back"/>
+    <item
+        android:id="@+id/optlogout"
+        android:title="Logout"
+        android:icon="@drawable/ic_baseline_arrow_forward_24"/>
+
+</menu>

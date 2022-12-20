@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardBackgroundColor"
+    android:weightSum="7"
+    android:fitsSystemWindows="true"
+    android:id="@+id/Containerlog"
+    tools:context=".Ultimatix">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo_ultimatix">
+
+            </ImageView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="2"
+        android:orientation="vertical"
+        android:layout_weight="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:textColor="@color/btnColor"
+                android:textSize="16sp"
+                android:layout_marginLeft="170dp">
+
+
+            </TextView>
+
+
+
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="290dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:src="@drawable/unhide">
+
+            </ImageView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="340dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/lock__1_">
+
+            </ImageView>
+
+            <AutoCompleteTextView
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:layout_marginBottom="27dp"
+                android:backgroundTint="@color/grey"
+                android:textAlignment="center"
+                android:inputType="textVisiblePassword"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                tools:ignore="SpeakableTextPresentCheck">
+
+            </AutoCompleteTextView>
+
+        </FrameLayout>
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="149dp"
+                android:layout_height="38dp"
+                android:id="@+id/btn_proceed"
+                android:background="@drawable/rectangle_5"
+                android:text="Proceed"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck">
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+        </LinearLayout>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_weight="1"
+         android:gravity="top"
+         android:orientation="vertical">
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Terms and Conditions"
+             android:textColor="@color/btnColor"
+             android:textSize="10sp"
+             android:layout_marginLeft="160dp">
+
+         </TextView>
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Copyright © 2022 Tata Consultancy Services "
+             android:textColor="@color/design_default_color_on_secondary"
+             android:textSize="10sp"
+             android:layout_marginLeft="100dp">
+
+         </TextView>
+
+
+     </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
