@@ -15,6 +15,7 @@ import android.view.View
 import android.view.View.MeasureSpec
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.NumberPicker.OnScrollListener.SCROLL_STATE_IDLE
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -99,9 +100,11 @@ class BusPass : Fragment() {
         val pick = arrayOf<String>("6:45","7:45")
         pick_Time.minValue = 0
         pick_Time.maxValue = (pick.size - 1)
+        pick_Time.wrapSelectorWheel = true
         pick_Time.displayedValues = pick
         drop_Time.minValue = 0
         drop_Time.maxValue = (drop.size - 1)
+        drop_Time.wrapSelectorWheel = true
         drop_Time.displayedValues = drop
         data_from.addTextChangedListener(textWatcher)
         data_name.addTextChangedListener(textWatcher)
@@ -120,8 +123,8 @@ class BusPass : Fragment() {
         data_endDate.text = last_date
         var Pickup: String? = ""
         var Drop: String? = ""
-        pick_Time.setOnValueChangedListener { picker, oldVal, newVal -> Pickup ="$newVal" }
-        drop_Time.setOnValueChangedListener { picker, oldVal, newVal -> Drop ="$newVal"  }
+        pick_Time.setOnValueChangedListener { picker, oldVal, newVal -> Pickup = pick[newVal] }
+        drop_Time.setOnValueChangedListener { picker, oldVal, newVal -> Drop = drop[newVal] }
 
       /*  val getContent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
 
@@ -148,7 +151,7 @@ class BusPass : Fragment() {
             val end_date = data_endDate.text.toString()
 
             pass = Pass(
-                null,emp_id,from,to,bus_stop,route,start_date,end_date
+                null,emp_id,from,to,Pickup,Drop,bus_stop,route,start_date,end_date
             )
             context?.let {
                 viewModel.insertPass(pass)

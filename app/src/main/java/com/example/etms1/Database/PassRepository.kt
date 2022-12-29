@@ -9,11 +9,12 @@ class PassRepository(private val passDao: BuspassDao) {
     val allPases : LiveData<List<Pass>> = passDao.getAllPases()
 
     suspend fun insert(pass: Pass){
-        Log.d("sdadasd","repository says hi!!!!!!!!!!!!!")
         passDao.insert(pass)
     }
 
     suspend fun delete(pass: Pass){
         passDao.delete(pass)
     }
+
+
 }

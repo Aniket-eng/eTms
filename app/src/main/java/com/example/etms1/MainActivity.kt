@@ -15,6 +15,7 @@ import com.example.etms1.Adapter.PassAdapter
 import com.example.etms1.databinding.ActivityMainBinding
 import com.example.etms1.repository.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 import kotlinx.android.synthetic.main.nav_header_layout.*
 
@@ -37,10 +38,8 @@ class MainActivity : AppCompatActivity() {
         } else {
             setTheme(R.style.Theme_App)  //default app theme
         }
-
         setContentView(R.layout.activity_main)
-
-        initRecyclerView(this)
+       // initRecyclerView(this)
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         checkUserPresent()
 
@@ -108,19 +107,22 @@ class MainActivity : AppCompatActivity() {
         /*appBarConfig = AppBarConfiguration(
             setOf(R.id.drawerlayout, R.id.toolbar,R.string.OpenDrawer,R.string.CloseDrawer)
         )
-        */
+
         private fun initRecyclerView(view: MainActivity) {
 
+
+
             val layoutManager = LinearLayoutManager(this)
-            recyclerView = view!!.findViewById(R.id.recycler)
-            recyclerView.layoutManager = layoutManager
-            recyclerView.setHasFixedSize(true)
+            recycler1.layoutManager = layoutManager
+          //  recyclerView.setHasFixedSize(true)
             //adapter = activity?.let{PassAdapter(it,this)}!!
-            adapter = PassAdapter(this,this)
-            recyclerView.adapter = adapter
+            adapter = PassAdapter(this)
+            recycler1.adapter = adapter
 
 
         }
+
+         */
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)){

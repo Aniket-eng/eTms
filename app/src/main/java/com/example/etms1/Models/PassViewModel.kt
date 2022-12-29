@@ -33,7 +33,6 @@ class PassViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun insertPass(pass: Pass) = viewModelScope.launch(Dispatchers.IO) {
-        Log.d("sdadasd","viewmodel says hi!!!!!!!!!!!!!")
         repository.insert(pass)
     }
 }

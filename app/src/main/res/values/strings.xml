@@ -14,7 +14,7 @@
     <string name="MainTitle">Digital Bus Pass</string>
     <string name="applybus">Apply Bus Pass</string>
     <string name="request">Request Bus Pass</string>
-    <string name="queryhint"><font size ="15" >Search your bus stop</font></string>
+    <string name="queryhint"><font size="15">Search your bus stop</font></string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>
