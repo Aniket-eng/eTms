@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:weightSum="8"
+    tools:context="gfg.etms.app.ViewPass">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardUseCompatPadding="true"
+            android:elevation="6sp"
+            app:cardCornerRadius="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_baclground"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/view_data_from"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:textAlignment="center"
+                    android:background="@null"
+                    android:hint="Anushaki Ngr,Barc Main Gate"
+                    android:text=""
+                    android:textColor="@color/colorOnPrimary"
+                    android:textCursorDrawable="@drawable/custom_cursor"
+                    android:textSize="21dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/ic_route_icon">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/view_data_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:hint="TCS OLYMPUS"
+                    android:textSize="21dp"
+                    android:text="TCS Olympus"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorOnPrimary"
+                    android:textCursorDrawable="@drawable/custom_cursor"
+                    android:textStyle="bold">
+
+                </TextView>>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="Office In - "
+                        android:textColor="@color/colorOnPrimary"
+                        android:textSize="17dp"
+                        android:textStyle="bold">
+
+                    </TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/view_pickup"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginLeft="0dp"
+                        android:text=""
+                        android:textColor="@color/colorOnPrimary"
+                        android:textSize="17dp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="120dp"
+                        android:layout_marginBottom="4dp"
+                        android:text="Office Out - "
+                        android:textColor="@color/colorOnPrimary"
+                        android:textSize="17dp"
+                        android:textStyle="bold">
+
+                    </TextView>
+                    <TextView
+                        android:id="@+id/view_drop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="4dp"
+                        android:text=""
+                        android:textColor="@color/colorOnPrimary"
+                        android:textSize="17dp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="8sp"
+            android:layout_marginBottom="15dp">
+
+            <RelativeLayout
+                android:id="@+id/detail_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Name"
+                    android:textSize="18dp">
+
+                </TextView>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Employee ID"
+                    android:textSize="18dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/view_data_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Input_Name"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20dp"
+                    android:textCursorDrawable="@drawable/custom_cursor"
+                    android:layout_marginTop="55dp"
+                    android:ellipsize="end"
+                    android:background="@null"
+                    android:maxLength="17"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textAllCaps="true"
+                    android:textSize="18dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/view_data_empId"
+                    android:textColor="@color/black"
+                    android:background="@null"
+                    android:hint="Input_Id"
+                    android:layout_width="wrap_content"
+                    android:textCursorDrawable="@drawable/custom_cursor"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="55dp"
+                    android:textDirection="rtl"
+                    android:layout_marginEnd="10dp"
+                    android:text=""
+                    android:textSize="18dp">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="110dp"
+                    android:text="Bus Stop Name"
+                    android:textSize="18dp">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="110dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Route Type"
+                    android:textDirection="rtl"
+                    android:textSize="18dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/view_data_busStop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Bus_Stop"
+                    android:textCursorDrawable="@drawable/custom_cursor"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20dp"
+                    android:background="@null"
+                    android:layout_marginTop="150dp"
+                    android:text=""
+                    android:textSize="18dp">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="145dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Both"
+                    android:textDirection="rtl"
+                    android:textSize="18dp">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="195dp"
+                    android:text="Start Date"
+                    android:textSize="18dp">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="195dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="End Date"
+                    android:textDirection="rtl"
+                    android:textSize="18dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/view_data_startDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="230dp"
+                    android:hint="1st Nov, 2022"
+                    android:text=""
+                    android:textSize="18dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/view_data_endDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="230dp"
+                    android:layout_marginEnd="10dp"
+                    android:hint="30th Nov, 2022"
+                    android:text=""
+                    android:textSize="18dp">
+
+                </TextView>
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="285dp"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/consttext"
+                    android:text="Route : "
+                    android:textSize="18dp">
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/view_data_route"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textCursorDrawable="@drawable/custom_cursor"
+                    android:justificationMode="inter_word"
+                    android:layout_toRightOf="@+id/consttext"
+                    android:hint="Complete Route"
+                    android:textColor="@color/black"
+                    android:singleLine="false"
+                    android:background="@null"
+                    android:layout_marginRight="20dp"
+                    android:text=""
+                    android:textSize="18dp">
+
+                </TextView>
+
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tcs_logo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="100dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/logo1"
+            tools:ignore="MissingConstraints"></ImageView>
+    </LinearLayout>
+</LinearLayout>

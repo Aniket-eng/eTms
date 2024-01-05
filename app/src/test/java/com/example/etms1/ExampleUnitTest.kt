@@ -1,4 +1,4 @@
-package com.example.etms1
+package gfg.etms.app
 
 import org.junit.Test
 

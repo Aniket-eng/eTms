@@ -7,7 +7,7 @@
     android:id="@+id/ApplyBus"
     android:orientation="vertical"
     android:weightSum="7"
-    tools:context=".ApplyBusPass">
+    tools:context="gfg.etms.app.ApplyBusPass">
 
 <LinearLayout
     android:layout_width="match_parent"

@@ -9,6 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/toolbar"
+    app:navigationIcon="@drawable/ic_actionmenu"
     app:title="@string/MainTitle"
     app:titleTextColor="@color/colorOnPrimary"
     android:background="@color/colorPrimaryVariant">
@@ -17,9 +18,9 @@
 
 
 
-
-
-<include layout="@layout/content_main"></include>
+<include
+    android:id="@+id/mainContainer"
+    layout="@layout/content_main"></include>
 
 
 

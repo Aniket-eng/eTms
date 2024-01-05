@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">eTMS1</string>
+    <string name="app_name">eTMS1.2</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -14,6 +14,11 @@
     <string name="MainTitle">Digital Bus Pass</string>
     <string name="applybus">Apply Bus Pass</string>
     <string name="request">Request Bus Pass</string>
+    <string name="bus_pass_name">Name</string>
+    <string name="bus_stop_name">Bus Stop Name</string>
+    <string name="bus_route_type">Route Type</string>
+    <string name="bus_pass_title">Digital Bus Pass</string>
+
     <string name="queryhint"><font size="15">Search your bus stop</font></string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

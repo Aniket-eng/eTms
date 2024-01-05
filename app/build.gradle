@@ -7,16 +7,14 @@ plugins {
 }
 
 android {
-    namespace 'com.example.etms1'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.etms1"
+        applicationId "gfg.etms.app"
         minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -24,6 +22,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            versionNameSuffix '1.2'
         }
     }
     compileOptions {
@@ -37,8 +36,17 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    androidExtensions {
+        experimental = true
+    }
+    lintOptions {
+        checkReleaseBuilds false
+    }
+
 
 }
+
+
 
 dependencies {
 
@@ -48,6 +56,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.datastore:datastore-core:1.0.0'
     implementation 'androidx.datastore:datastore-preferences-core:1.0.0'
+    implementation 'com.google.firebase:firebase-database:20.0.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -76,5 +85,31 @@ dependencies {
     implementation "androidx.room:room-ktx:2.4.3"
     androidTestImplementation "androidx.room:room-testing:2.2.5"
 
+    implementation 'com.google.code.gson:gson:2.8.7'
 
+
+}
+
+
+
+task copyRelease(type: Copy) {
+    // set your paths here
+    //def sourcePath = file ("H:/New folder (2)/Android Project/app/build/outputs/apk/debug/app-debug.apk").absolutePath
+    //def destinationPath = "H:/New folder (2)/Android Project/APK/"
+    // set a name for your build if you are going to rename it
+    //def releaseName = "${rootProject.name}_latest.apk"
+    from    ( [buildDir.absolutePath, 'outputs', 'apk','debug'].join(File.separator) )
+    include ( "app-debug.apk" )
+    //from "$sourcePath"
+    //into "$destinationPath"
+    into    ( [rootDir.absolutePath, 'APK'].join(File.separator) )
+    //use the below line if you wish to rename the apk
+    //rename { releaseName }
+    rename  ("app-debug.apk", 'etms_latest.apk')
+    println "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+}
+afterEvaluate {
+    // to execute the copy task every time a release build is generated
+    packageRelease.finalizedBy(copyRelease)
+    println "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 }
