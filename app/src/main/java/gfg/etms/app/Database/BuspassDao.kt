@@ -25,9 +25,9 @@ interface BuspassDao {
     fun resetId()
 
     @Query("SELECT MAX(id) from pass_table")
-    fun maxId(): LiveData<Int>
+    fun maxId(): Int
 
-    @Query("SELECT * from pass_table WHERE id = :pos LIMIT 1")
-    fun userLoad(pos: LiveData<Int>): LiveData<Pass>
+    @Query("SELECT * from pass_table WHERE id = (SELECT MAX(id) from pass_table) LIMIT 1")
+    fun userLoad(): LiveData<Pass>
 
 }

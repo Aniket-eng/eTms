@@ -6,10 +6,13 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
 import gfg.etms.app.Database.PassDatabase
 import gfg.etms.app.Database.PassRepository
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 
 
 
@@ -21,12 +24,14 @@ class PassViewModel(application: Application) : AndroidViewModel(application) {
     private val repository : PassRepository
     val allpass : LiveData<List<Pass>>
     private val _data = MutableLiveData<String>()
+    val recentpass : LiveData<Pass>
     //val data: LiveData<String> get() = _data
 
     init {
         val dao = PassDatabase.getDatabase(application).getPassDao()
         repository = PassRepository(dao)
         allpass = repository.allPases
+        recentpass = repository.recentpass
     }
 
     fun deletePass(pass: Pass) = viewModelScope.launch(Dispatchers.IO) {
@@ -48,19 +53,17 @@ class PassViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getData() : LiveData<String> {
         Log.d("data",_data.value.toString())
+        if (_data != null){
+            return _data
+        }
         return _data
     }
 
-    fun getrecentdata() : LiveData<Pass>{
-
-        val recentpass : LiveData<Pass> = repository.load(repository.maxId())
-
-        return recentpass
-
-    }
 
 
 
 
 
 }
+
+

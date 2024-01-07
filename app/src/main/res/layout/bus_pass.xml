@@ -103,6 +103,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingTop="5dp"
+                            android:textColor="@color/white"
                             android:text=""
                             android:inputType="none">
 
@@ -115,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="50dp"
                         android:layout_marginBottom="4dp"
                         android:text="Drop - "
                         android:textColor="@color/colorOnPrimary"
@@ -126,15 +127,17 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+                        android:layout_height="wrap_content">
 
                         <AutoCompleteTextView
                             android:id="@+id/drop_Time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="#07000000"
+                            android:textStyle="bold"
                             android:text=""
-                            android:paddingTop="5dp"
+                            android:textColor="@color/white"
+                            android:padding="10dp"
                             android:inputType="none"
                             >
 
@@ -170,7 +173,7 @@
         android:layout_marginEnd="10dp"
         app:cardUseCompatPadding="true"
         app:cardElevation="1dp"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="9dp">
 
         <RelativeLayout
             android:id="@+id/detail_layout"
@@ -378,13 +381,12 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/data_submit"
-        android:visibility="gone"
-        android:layout_marginBottom="10dp"
+        android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="160dp"
         android:text="Submit"
-        android:layout_gravity="bottom">
+        >
 
     </androidx.appcompat.widget.AppCompatButton>
 
@@ -396,7 +398,7 @@
     android:layout_height="0dp"
     android:layout_weight="1"
     android:id="@+id/tcs_logo"
-    android:visibility="visible"
+    android:visibility="gone"
     android:gravity="bottom">
     <ImageView
         android:layout_width="wrap_content"

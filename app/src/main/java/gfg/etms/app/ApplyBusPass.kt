@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import gfg.etms.app.R
-import kotlinx.android.synthetic.main.apply_bus_pass.*
+import gfg.etms.app.databinding.ApplyBusPassBinding
+import gfg.etms.app.databinding.HomeBinding
+
 
 
 class ApplyBusPass : Fragment() {
-
+    private var _binding: ApplyBusPassBinding? = null
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,14 +24,16 @@ class ApplyBusPass : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = ApplyBusPassBinding.inflate(inflater, container, false)
+        return binding.root
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.apply_bus_pass, container, false)
+        //return inflater.inflate(R.layout.apply_bus_pass, container, false)
     }
 
     override fun onStart() {
         super.onStart()
 
-        btn_both.setOnClickListener {
+        binding.btnBoth.setOnClickListener {
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             transaction.replace(R.id.mainContainer, Passdetails())
             transaction.commit()

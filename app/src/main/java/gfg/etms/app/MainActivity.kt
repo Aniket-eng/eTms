@@ -14,9 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import gfg.etms.app.Models.Pass
 import gfg.etms.app.databinding.ActivityMainBinding
 import gfg.etms.app.repository.MainViewModel
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.nav_header_layout.*
 import androidx.appcompat.widget.Toolbar;
 import gfg.etms.app.Database.PassDatabase
 import gfg.etms.app.Models.PassViewModel
@@ -53,45 +50,13 @@ class MainActivity : AppCompatActivity(), BuspassRequest.OnDataPass {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
        // initRecyclerView(this)
-        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         checkUserPresent()
         database = PassDatabase.getDatabase(this)
-        viewModel = ViewModelProvider(this).get(PassViewModel::class.java)
+        viewModel = ViewModelProvider(this)[PassViewModel::class.java]
         fragment = ViewPass()
 
-        viewModel.getrecentdata().observe(this,{ pass ->
-            Log.d("data", "********************* TESTING ***********************")
-            pass?.let {
 
-                setSupportActionBar(toolbar)
-                supportActionBar?.setTitle(R.string.MainTitle)
-                /*
-                val bundle  = Bundle()
-                val gsonpass = viewModel.getData().value.toString()
-                fragment.arguments = bundle.apply {
-                    putString("finally",gsonpass)
-                }
-                replacefragment(fragment)
-
-                 */
-                nullPass.visibility = View.GONE
-                val textpass = Gson().toJson(pass)
-                selectedPass = Gson().fromJson(textpass, Pass::class.java)
-
-                selectedPass?.let {
-                    binding.homeContainer.mainContainer.lStartPointText.setText(it.from)
-                    binding.homeContainer.mainContainer.lLocationText.setText(it.to)
-                    binding.homeContainer.mainContainer.tvPickTime.setText(it.Pickup)
-                    binding.homeContainer.mainContainer.tvDropTime.setText(it.Drop)
-                    binding.homeContainer.mainContainer.employeeNameText.setText(it.name)
-                    binding.homeContainer.mainContainer.employeeIdText.setText(it.emp_id)
-                    binding.homeContainer.mainContainer.busStopNameText.setText(it.bus_stop)
-                    binding.homeContainer.mainContainer.startDateTextCon.setText(it.start_date)
-                    binding.homeContainer.mainContainer.endDateTextCon.setText(it.end_date)
-                    binding.homeContainer.mainContainer.busRouteNameText.setText("Route : " + it.route)
-                }
-            }
-        })
 
         //viewModel = ViewModelProvider(this,
           //  ViewModelProvider.AndroidViewModelFactory.getInstance(application = Application())).get(PassViewModel::class.java)
@@ -131,27 +96,35 @@ class MainActivity : AppCompatActivity(), BuspassRequest.OnDataPass {
                         supportActionBar?.setTitle(R.string.MainTitle)
                         val bundle  = Bundle()
                         val text = viewModel.getData().value.toString()
-                        fragment.arguments = bundle.apply {
-                            putString("finally",text)
+                        Log.d("sds","Home is called $text String is got from Viewmodel")
+                        if (text != null) {
+                            if (text.length > 4) {
+                                fragment.arguments = bundle.apply {
+                                    putString("finally", text)
+                                }
+                                replacefragment(fragment)
+                            }
+                            else {
+                                defaultPass()
+                            }
                         }
-                        replacefragment(fragment)
 
 
                     }
                     R.id.optApply -> {
-                        nullPass.visibility = View.GONE
+                        //nullPass.visibility = View.GONE
                         setSupportActionBar(toolbar)
                         supportActionBar?.setTitle(R.string.applybus)
                         replacefragment(ApplyBusPass())
                     }
                     R.id.optRequest -> {
-                        nullPass.visibility = View.GONE
+                        //nullPass.visibility = View.GONE
                         setSupportActionBar(toolbar)
                         supportActionBar?.setTitle(R.string.MainTitle)
                         replacefragment(BuspassRequest())
                     }
                     R.id.optBack -> {
-                            nullPass.visibility = View.GONE
+                           // nullPass.visibility = View.GONE
                             val intent = Intent(this@MainActivity, EntryPoint::class.java)
                             startActivity(intent)
 
@@ -173,10 +146,50 @@ class MainActivity : AppCompatActivity(), BuspassRequest.OnDataPass {
 
         }
 
+       viewModel.recentpass.observe(this) {
+            Log.d("data", "********************* TESTING ***********************")
+            it?.let {
+                binding.homeContainer.mainContainer.nullPass.visibility = View.GONE
+                setSupportActionBar(toolbar)
+                supportActionBar?.setTitle(R.string.MainTitle)
+                val textpass = Gson().toJson(it)
+                val bundle  = Bundle()
+                fragment.arguments = bundle.apply {
+                    putString("finally",textpass)
+                }
+                if (textpass != null){
+                    replacefragment(fragment)
+                    selectedPass = Gson().fromJson(textpass, Pass::class.java)
+
+                    selectedPass?.let {
+                        binding.homeContainer.mainContainer.lStartPointText.setText(it.from)
+                        binding.homeContainer.mainContainer.lLocationText.setText(it.to)
+                        binding.homeContainer.mainContainer.tvPickTime.setText(it.Pickup)
+                        binding.homeContainer.mainContainer.tvDropTime.setText(it.Drop)
+                        binding.homeContainer.mainContainer.employeeNameText.setText(it.name)
+                        binding.homeContainer.mainContainer.employeeIdText.setText(it.emp_id)
+                        binding.homeContainer.mainContainer.busStopNameText.setText(it.bus_stop)
+                        binding.homeContainer.mainContainer.startDateTextCon.setText(it.start_date)
+                        binding.homeContainer.mainContainer.endDateTextCon.setText(it.end_date)
+                        binding.homeContainer.mainContainer.busRouteNameText.setText("Route : " + it.route)
+                    }
+                }
+                else{
+                    binding.homeContainer.mainContainer.nullPass.visibility = View.VISIBLE
+                }
+
+
+
+
+            }
+        }
+
+
+
         viewModel.getData()?.observe(this) {
             Log.d("data", "WWdata  to hai!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             it?.let {
-                nullPass.visibility = View.GONE
+                //nullPass.visibility = View.GONE
                 text = it
                 selectedPass = Gson().fromJson(text, Pass::class.java)
 
@@ -195,6 +208,8 @@ class MainActivity : AppCompatActivity(), BuspassRequest.OnDataPass {
             }
 
         }
+
+
 
     }
 
@@ -232,20 +247,58 @@ class MainActivity : AppCompatActivity(), BuspassRequest.OnDataPass {
 
         mainViewModel.read.observe(this){
 
-            username_text.text = it.toString()
+            binding.navigationView.menu.findItem(R.id.username_text)?.title = it.toString()
         }
     }
 
     override fun onBackPressed() {
-       if(drawerlayout.isDrawerOpen(GravityCompat.START)){
+       if(binding.drawerlayout.isDrawerOpen(GravityCompat.START)){
 
-           drawerlayout.closeDrawer(GravityCompat.START)
+           binding.drawerlayout.closeDrawer(GravityCompat.START)
        }
         else{
             super.onBackPressed()
        }
     }
+    private fun defaultPass() {
+        viewModel.recentpass.observe(this) {
+            Log.d("data", "********************* TESTING ***********************")
+            it?.let {
+                binding.homeContainer.mainContainer.nullPass.visibility = View.GONE
+                setSupportActionBar(toolbar)
+                supportActionBar?.setTitle(R.string.MainTitle)
+                val textpass = Gson().toJson(it)
+                val bundle  = Bundle()
+                fragment.arguments = bundle.apply {
+                    putString("finally",textpass)
+                }
+                if (textpass != null){
+                    replacefragment(fragment)
+                    selectedPass = Gson().fromJson(textpass, Pass::class.java)
 
+                    selectedPass?.let {
+                        binding.homeContainer.mainContainer.lStartPointText.setText(it.from)
+                        binding.homeContainer.mainContainer.lLocationText.setText(it.to)
+                        binding.homeContainer.mainContainer.tvPickTime.setText(it.Pickup)
+                        binding.homeContainer.mainContainer.tvDropTime.setText(it.Drop)
+                        binding.homeContainer.mainContainer.employeeNameText.setText(it.name)
+                        binding.homeContainer.mainContainer.employeeIdText.setText(it.emp_id)
+                        binding.homeContainer.mainContainer.busStopNameText.setText(it.bus_stop)
+                        binding.homeContainer.mainContainer.startDateTextCon.setText(it.start_date)
+                        binding.homeContainer.mainContainer.endDateTextCon.setText(it.end_date)
+                        binding.homeContainer.mainContainer.busRouteNameText.setText("Route : " + it.route)
+                    }
+                }
+                else{
+                    binding.homeContainer.mainContainer.nullPass.visibility = View.VISIBLE
+                }
+
+
+
+
+            }
+        }
+    }
 
     private fun replacefragment(fragment: Fragment) {
 

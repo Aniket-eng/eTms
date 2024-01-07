@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import gfg.etms.app.R
-import kotlinx.android.synthetic.main.passdetails.*
+import gfg.etms.app.databinding.PassdetailsBinding
+import gfg.etms.app.databinding.UltimatixBinding
 
 
 class Passdetails : Fragment() {
     // TODO: Rename and change types of parameters
-
+    private var _binding: PassdetailsBinding? = null
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,14 +23,15 @@ class Passdetails : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        _binding = PassdetailsBinding.inflate(inflater, container, false)
+        return binding.root
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.passdetails, container, false)
+        //return inflater.inflate(R.layout.passdetails, container, false)
     }
 
     override fun onStart() {
         super.onStart()
-        search_bar.setOnClickListener {
+        binding.searchBar.setOnClickListener {
 
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             transaction.replace(R.id.mainContainer, BusPass())

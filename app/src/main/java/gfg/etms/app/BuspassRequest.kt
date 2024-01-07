@@ -9,9 +9,14 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.PopupMenu
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,8 +28,6 @@ import gfg.etms.app.Models.PassViewModel
 import gfg.etms.app.R
 import gfg.etms.app.databinding.BuspassRequestBinding
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.list_item.*
-import kotlinx.android.synthetic.main.toolbar_main.*
 
 private lateinit var recyclerView: RecyclerView
 private lateinit var database: PassDatabase
@@ -33,6 +36,7 @@ private lateinit var adapter: PassAdapter
 private lateinit var layoutManager: LinearLayoutManager
 private lateinit var selectedPass : Pass
 private lateinit var fragment: Fragment
+private lateinit var toolbar: androidx.appcompat.widget.Toolbar
 private lateinit var navController: NavController
 
 
@@ -72,7 +76,7 @@ class BuspassRequest : Fragment() , PassAdapter.PassItemClickListener, PopupMenu
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory.getInstance(Application()))[PassViewModel::class.java]
+            ViewModelProvider.AndroidViewModelFactory.getInstance(Application())).get(PassViewModel::class.java)
         database = PassDatabase.getDatabase(requireContext())
         adapter = PassAdapter(requireActivity(),this)
         // rest of my stuff
@@ -83,8 +87,8 @@ class BuspassRequest : Fragment() , PassAdapter.PassItemClickListener, PopupMenu
 
         //viewModel = ViewModelProvider(this,
         //ViewModelProvider.AndroidViewModelFactory.getInstance(application = Application())).get(PassViewModel::class.java)
-
-        viewModel.allpass.observe(viewLifecycleOwner,{ list ->
+        val owner = activity as LifecycleOwner
+        viewModel.allpass.observe(owner, Observer { list ->
             Log.d("data", "********************* TESTING ***********************")
             list?.let {
                 adapter.updateList(it as ArrayList<Pass>)
@@ -106,7 +110,8 @@ class BuspassRequest : Fragment() , PassAdapter.PassItemClickListener, PopupMenu
         if(gson!=null) {
             Log.d("data", "gson mai data  to hai!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         }
-        (activity as AppCompatActivity?)?.setSupportActionBar(toolbar)
+        //toolbar = view?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)!!
+        //(activity as AppCompatActivity?)?.setSupportActionBar(toolbar)
         (activity as AppCompatActivity?)?.supportActionBar?.setTitle(R.string.MainTitle)
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         fragment.arguments = bundle.apply {
@@ -132,7 +137,8 @@ class BuspassRequest : Fragment() , PassAdapter.PassItemClickListener, PopupMenu
     }
 
     override fun onBtnClicked(pass: Pass) {
-        list_delete.setOnClickListener {
+        var btn : AppCompatButton = view?.findViewById(R.id.list_delete) !!
+        btn.setOnClickListener {
             viewModel.deletePass(selectedPass)
         }
     }

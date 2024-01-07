@@ -4,10 +4,8 @@ package gfg.etms.app
 
 
 import android.app.Activity
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,16 +19,17 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import gfg.etms.app.R
+import gfg.etms.app.databinding.UltimatixBinding
 import gfg.etms.app.repository.MainViewModel
-import kotlinx.android.synthetic.main.ultimatix.*
+
 
 
 class Ultimatix : Fragment() {
     lateinit var buttonOk: Button
     lateinit var username: EditText
     private lateinit var mainViewModel: MainViewModel
-
+    private var _binding: UltimatixBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,14 +43,16 @@ class Ultimatix : Fragment() {
         })
          */
 
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        // Inflate the layout for this fragment
+        _binding = UltimatixBinding.inflate(inflater, container, false)
+        return binding.root
+        /* Inflate the layout for this fragment
         try {
             var v = inflater.inflate(R.layout.ultimatix, container, false)
             return v
@@ -60,6 +61,8 @@ class Ultimatix : Fragment() {
             Log.e(TAG, "onCreateView", e)
             throw e
         }
+
+         */
 
     }
 
@@ -70,8 +73,8 @@ class Ultimatix : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        btn_proceed.setOnClickListener {
-            val myName= user_name.text.toString()
+        binding.btnProceed.setOnClickListener {
+            val myName= binding.userName.text.toString()
             mainViewModel.savaData(myName)
             hideKeyboard()
             val transaction = requireActivity().supportFragmentManager.beginTransaction()

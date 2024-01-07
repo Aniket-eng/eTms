@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardBackgroundColor"
+    android:weightSum="7"
+    android:fitsSystemWindows="true"
+    android:id="@+id/LoginOption"
+    android:theme="@style/ThemeOverlay.ETMS1.FullscreenContainer"
+    tools:context=".LoginOptions">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        android:layout_weight="1">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/logo_ultimatix">
+
+                </ImageView>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="1"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:textColor="@color/btnColor"
+                android:textSize="16sp"
+                android:gravity="top"
+                android:layout_marginLeft="170dp">
+
+            </TextView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="280dp"
+                android:layout_marginTop="30dp"
+                android:clickable="true"
+                android:src="@drawable/unhide">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="150dp"
+                android:layout_marginRight="150dp"
+                android:layout_marginTop="30dp"
+                android:paddingBottom="5dp"
+                android:text=""
+                android:backgroundTint="@color/grey"
+                android:textAlignment="center"
+                android:inputType="textVisiblePassword"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                tools:ignore="SpeakableTextPresentCheck">
+            </TextView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/loginselect"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="Select Login Method"
+            android:textColor="@color/btnColor"
+            android:textSize="12dp"
+            android:visibility="gone"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/enterAuth"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="@string/enterAuth"
+            android:textColor="@color/black"
+            android:textSize="12dp">
+
+        </TextView>
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:id="@+id/editEnterAuth"
+            android:backgroundTint="@color/grey"
+            android:layout_below="@+id/enterAuth"
+            android:layout_centerHorizontal="true"
+            ></EditText>
+
+        <TextView
+            android:id="@+id/enterAuthmsg"
+            android:layout_width="400dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/editEnterAuth"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/enterAuthmsg"
+            android:textColor="@color/black"
+            android:textSize="12dp">
+
+        </TextView>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:visibility="gone"
+            android:id="@+id/btnEasy_auth"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/loginselect"
+            android:text="EasyAuth"
+            android:textAllCaps="false"
+            android:textColor="@color/btnColor"
+            android:background="@drawable/login_method">
+
+        </androidx.appcompat.widget.AppCompatButton>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:id="@+id/btnAuth_code"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/btnEasy_auth"
+            android:layout_gravity="center"
+            android:text="AuthCode"
+            android:textAllCaps="false"
+            android:textColor="@color/btnColor"
+            android:background="@drawable/login_method">
+
+        </androidx.appcompat.widget.AppCompatButton>
+
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="160dp"
+                android:layout_height="35dp"
+                android:id="@+id/btn_proceed"
+                android:background="@drawable/rectangle_5"
+                android:text="Login"
+                android:enabled="false"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck">
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terms and Conditions"
+                android:textColor="@color/btnColor"
+                android:textSize="10sp"
+                android:layout_marginLeft="160dp">
+
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Copyright © 2022 Tata Consultancy Services "
+                android:textColor="@color/design_default_color_on_secondary"
+                android:textSize="10sp"
+                android:layout_marginLeft="100dp">
+
+            </TextView>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

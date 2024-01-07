@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +23,8 @@ import gfg.etms.app.Database.PassDatabase
 import gfg.etms.app.Models.Pass
 import gfg.etms.app.Models.PassViewModel
 import gfg.etms.app.R
-import kotlinx.android.synthetic.main.bus_pass.*
+import gfg.etms.app.databinding.BusPassBinding
+import gfg.etms.app.databinding.HomeBinding
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -39,6 +41,10 @@ private lateinit var Drop:String
 
 
 class BusPass : Fragment() {
+
+
+    private var _binding: BusPassBinding? = null
+    private val binding get() = _binding!!
     var formatDate = SimpleDateFormat("d MMM, yyyy")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,11 +62,11 @@ class BusPass : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(data_from.text.isEmpty()  &&  data_name.text.isEmpty()  &&  data_empId.text.isEmpty() &&  data_busStop.text.isEmpty() && data_route.text.isEmpty() ) {
+                if(binding.dataFrom.text.isEmpty()  &&  binding.dataName.text.isEmpty()  &&  binding.dataEmpId.text.isEmpty() &&  binding.dataBusStop.text.isEmpty() && binding.dataRoute.text.isEmpty() ) {
                     Toast.makeText(activity,"Please Enter all Details",Toast.LENGTH_SHORT).show()
                 }
                 else{
-                    data_submit.visibility = View.VISIBLE
+                    binding.dataSubmit.visibility = View.VISIBLE
                 }
             }
 
@@ -73,7 +79,7 @@ class BusPass : Fragment() {
         ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
             val showingKeyboard = insets.isVisible(WindowInsetsCompat.Type.ime())
             if(showingKeyboard){
-                tcs_logo.visibility = View.GONE
+                binding.tcsLogo.visibility = View.GONE
             }
             insets
         }
@@ -85,9 +91,10 @@ class BusPass : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        _binding = BusPassBinding.inflate(inflater, container, false)
+        return binding.root
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.bus_pass, container, false)
+        //return inflater.inflate(R.layout.bus_pass, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -109,11 +116,13 @@ class BusPass : Fragment() {
         //drop_Time.displayedValues = drop
 
 
-        data_from.addTextChangedListener(textWatcher)
-        data_name.addTextChangedListener(textWatcher)
-        data_empId.addTextChangedListener(textWatcher)
-        data_busStop.addTextChangedListener(textWatcher)
-        data_route.addTextChangedListener(textWatcher)
+        binding.apply {
+            dataFrom.addTextChangedListener(textWatcher)
+            dataName.addTextChangedListener(textWatcher)
+            dataEmpId.addTextChangedListener(textWatcher)
+            dataBusStop.addTextChangedListener(textWatcher)
+            dataRoute.addTextChangedListener(textWatcher)
+        }
        val date = LocalDate.now()
         val month = LocalDate.now().month
         val year = LocalDate.now().year
@@ -130,7 +139,7 @@ class BusPass : Fragment() {
             if (this % 100 / 10 == 1) "th"
             else when (this % 10) { 1 -> "st" 2 -> "nd" 3 -> "rd" else -> "th" }
 
-        data_startDate.setOnClickListener {
+        binding.dataStartDate.setOnClickListener {
 
             val getDate : Calendar = Calendar.getInstance()
             val datepicker = DatePickerDialog(requireContext(),android.R.style.Theme_Holo_Dialog_MinWidth,DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
@@ -146,14 +155,14 @@ class BusPass : Fragment() {
                         dateArray[0].toInt().ordinalAbbrev()
                     } ${dateArray[1]} ${dateArray[2]}"
                 )
-                data_startDate.text = formatedDate
+                binding.dataStartDate.text = formatedDate
 
             },getDate.get(Calendar.YEAR), getDate.get(Calendar.MONTH),getDate.get(Calendar.DAY_OF_MONTH))
             datepicker.show()
 
         }
 
-        data_endDate.setOnClickListener {
+        binding.dataEndDate.setOnClickListener {
 
             val getDate : Calendar = Calendar.getInstance()
             val datepicker = DatePickerDialog(requireContext(),android.R.style.Theme_Holo_Dialog_MinWidth,DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
@@ -169,7 +178,7 @@ class BusPass : Fragment() {
                         dateArray[0].toInt().ordinalAbbrev()
                     } ${dateArray[1]} ${dateArray[2]}"
                 )
-                data_endDate.text = formatedDate
+                binding.dataEndDate.text = formatedDate
 
             },getDate.get(Calendar.YEAR), getDate.get(Calendar.MONTH),getDate.get(Calendar.DAY_OF_MONTH))
             datepicker.show()
@@ -188,25 +197,36 @@ class BusPass : Fragment() {
 
        */
 
+        binding.apply {
 
-        data_submit.setOnClickListener {
-            val emp_id = data_empId.text.toString()
-            val from = data_from.text.toString()
-            val to = data_to.text.toString()
-            val name = data_name.text.toString()
-            val bus_stop = data_busStop.text.toString()
-            val route = data_route.text.toString()
-            val start_date = data_startDate.text.toString()
-            val end_date = data_endDate.text.toString()
-            viewModel.resetAutoKey()
-            pass = Pass(
-                null,name,emp_id,from,to,PickUp,Drop,bus_stop,route,start_date,end_date
-            )
-            context?.let {
-                viewModel.insertPass(pass)
-                Toast.makeText(activity, "Details Added Sucessfully", Toast.LENGTH_SHORT).show()
-            }
-            /*if(pass!=null){
+            dataSubmit.setOnClickListener {
+                val emp_id = dataEmpId.text.toString()
+                val from = dataFrom.text.toString()
+                val to = dataTo.text.toString()
+                val name = dataName.text.toString()
+                val bus_stop = dataBusStop.text.toString()
+                val route = dataRoute.text.toString()
+                val start_date = dataStartDate.text.toString()
+                val end_date = dataEndDate.text.toString()
+                viewModel.resetAutoKey()
+                pass = Pass(
+                    null,
+                    name,
+                    emp_id,
+                    from,
+                    to,
+                    PickUp,
+                    Drop,
+                    bus_stop,
+                    route,
+                    start_date,
+                    end_date
+                )
+                context?.let {
+                    viewModel.insertPass(pass)
+                    Toast.makeText(activity, "Details Added Sucessfully", Toast.LENGTH_SHORT).show()
+                }
+                /*if(pass!=null){
                 Toast.makeText(activity, "Details Added Sucessfully", Toast.LENGTH_SHORT).show()
 
 
@@ -218,29 +238,52 @@ class BusPass : Fragment() {
              */
 
 
+            }
         }
 
     }
 
     override fun onResume() {
         super.onResume()
+        var pickup : String = ""
+        val generalMap = mapOf("06:45" to "17:45" , "07:45" to "18:45", "07:40" to "18:45")
+        val drop = listOf("17:45","18:45")
+        val pick = listOf("06:45","07:45","07:40")
 
-        val drop = listOf("18:00","19:00","17:45","18:45","17:40")
-        val pick = listOf("06:45","07:45","07:00","06:00","07:30","06:30","07:40")
+        fun setDrop(pick : String) {
 
-        val autoComplete1 : AutoCompleteTextView = pickup_Time
-        val adepter = ArrayAdapter(requireContext(),R.layout.list_items1,pick)
+            val autoComplete2: AutoCompleteTextView = binding.dropTime
+            if (generalMap.contains(pick)) {
+                binding.dataSubmit.visibility = View.VISIBLE
+                autoComplete2.setText(generalMap[PickUp])
+                Drop = generalMap[PickUp].toString()
+            } else {
+                binding.dataSubmit.visibility = View.GONE
+                Toast.makeText(activity, "Please Enter Correct Pickup Time", Toast.LENGTH_SHORT)
+                    .show()
+
+            }
+        }
+
+
+        val autoComplete1 : AutoCompleteTextView = binding.pickupTime
+        val adepter = ArrayAdapter(requireContext(),R.layout.list_items1,pick.sorted())
         autoComplete1.setAdapter(adepter)
         autoComplete1.onItemClickListener = AdapterView.OnItemClickListener {
                 adapterView, view, i, l ->
 
             PickUp = adapterView.getItemAtPosition(i) as String
-            //Toast.makeText(requireContext(),"Item: $PickUp",Toast.LENGTH_SHORT).show()
+            pickup = PickUp
+            setDrop(pickup)
+            Log.d("data", "$pickup")
 
         }
 
-        val autoComplete2 : AutoCompleteTextView = drop_Time
-        val adepter1 = ArrayAdapter(requireContext(),R.layout.list_items1,drop)
+
+
+
+        /*
+        val adepter1 = ArrayAdapter(requireContext(),R.layout.list_items1,drop.sorted())
 
         autoComplete2.setAdapter(adepter1)
         autoComplete2.onItemClickListener = AdapterView.OnItemClickListener {
@@ -250,6 +293,8 @@ class BusPass : Fragment() {
             //Toast.makeText(requireContext(),"Item: $Drop",Toast.LENGTH_SHORT).show()
 
         }
+
+         */
 
 
     }

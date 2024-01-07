@@ -3,10 +3,14 @@ package gfg.etms.app.Database
 import android.util.Log
 import androidx.lifecycle.LiveData
 import gfg.etms.app.Models.Pass
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class PassRepository(private val passDao: BuspassDao) {
 
     val allPases : LiveData<List<Pass>> = passDao.getAllPases()
+    val recentpass : LiveData<Pass> = passDao.userLoad()
 
 
     suspend fun insert(pass: Pass){
@@ -22,11 +26,11 @@ class PassRepository(private val passDao: BuspassDao) {
         passDao.resetId()
     }
 
-    fun load(pos: LiveData<Int>) : LiveData<Pass>{
-      return passDao.userLoad(pos)
+    fun load() : LiveData<Pass>{
+            return passDao.userLoad()
     }
 
-    fun maxId() : LiveData<Int>{
+    fun maxId() : Int {
         return passDao.maxId()
     }
 

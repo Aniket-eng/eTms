@@ -9,16 +9,15 @@
     android:background="@color/colorOnPrimary">
 
     <TextView
+        android:id="@+id/nullPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/nullPass"
-        android:gravity="center"
-        android:textSize="17sp"
         android:layout_centerInParent="true"
-        android:visibility="visible"
+        android:gravity="center"
         android:text="Bus pass does not exist,you can apply for bus pass to avail bus services."
-        android:textColor="#848484">
-    </TextView>
+        android:textColor="#848484"
+        android:textSize="17sp"
+        android:visibility="visible"></TextView>
 
     <ImageView
         android:id="@+id/tata"
